@@ -13,6 +13,18 @@ html, body{
     background-color: #000;
 }
 
+#mouseChaserCircle {
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+    
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+}
+
 #landingPage {
     height: 100vh;
     background-color: black;
