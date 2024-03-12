@@ -7,12 +7,15 @@ const scroll = new LocomotiveScroll({
 
 document.querySelectorAll(".elem").forEach(function(elem){
     elem.addEventListener("mousemove", function(dets){
-        // let diff = dets.clientY - elem.getBoundingClientRect().top();
+        let diff = dets.clientY - elem.getBoundingClientRect().top;
         // console.log(dets)
         gsap.to(elem.querySelector("img"), {
             opacity: 1,
             ease: Power1,
+            top: diff,
+            left: dets.clientX,
         });
+
     });
 });
 
