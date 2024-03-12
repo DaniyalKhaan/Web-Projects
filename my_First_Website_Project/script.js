@@ -6,18 +6,33 @@ const scroll = new LocomotiveScroll({
 
 
 document.querySelectorAll(".elem").forEach(function(elem){
+    let diffX = 0;
+    let rotate = 0;
     elem.addEventListener("mousemove", function(dets){
-        let diff = dets.clientY - elem.getBoundingClientRect().top;
-        // console.log(dets)
+        let diffY = dets.clientY - elem.getBoundingClientRect().top;
+        rotate = dets.clientX - diffX;
+        diffX = dets.clientX;
+
+
         gsap.to(elem.querySelector("img"), {
             opacity: 1,
-            ease: Power1,
-            top: diff,
+            ease: Power3,
+            top: diffY,
             left: dets.clientX,
+            rotate: gsap.utils.clamp(-20, 20, rotate * 0.5),
+            
         });
 
     });
+    elem.addEventListener("mouseleave", () => {
+        gsap.to(elem.querySelector("img"), {
+            opacity: 0,
+            ease: Power3,
+           
+        })
+    })
 });
+
 
 
 
@@ -44,7 +59,7 @@ function cursorChaserCircle() {
         
         // timout will run after 100msecs and if the mouse is not moving it will scale the circle to 1 (default size).
         timeout = setTimeout(function(){
-            document.getElementById("mouseChaserCircle").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(1, 1)`;
+            document.getElementById("mouseChaserCircle").style.transform = `translate(${xprev}px, ${dets.clientY}px) scale(1, 1)`;
 
         }, 100)
 
